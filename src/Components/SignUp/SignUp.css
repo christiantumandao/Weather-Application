@@ -1,0 +1,53 @@
+.LoginSignup--page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginSignup--page label {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.LoginSignup--form {
+    height: auto;
+    width: clamp(425px, 30%, 1024px);
+    padding: 20px;
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-radius: 10px;
+    background-color: gray;
+
+}
+
+.LoginSignup--form input,
+.LoginSignup--form button {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+
+    font-size: 1rem;
+    padding: .3rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.LoginSignup--form input:focus {
+    outline: none;
+    background-color: var(--primary);
+}
+
+.LoginSignup--form button {
+    border: none;
+    font-weight: bolder;
+}
+
+.LoginSignup--form button:hover {
+    background-color: rgba(255,255,255,.5);
+}

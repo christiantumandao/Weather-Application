@@ -1,0 +1,90 @@
+.WidgetBody--wrapper {
+    margin-top: 25px;
+    width: 100%;
+    height: 350px;
+    min-height: 350px;
+    padding: 0 50px;
+
+}
+
+div.WidgetBody--container {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border-radius: 10px;
+    background-color: var(--light);
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.WidgetBody--currentLocation {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.WidgetBody--currentLocation > * {
+
+}
+
+.WidgetBody--left {
+    flex-grow: 1;
+    padding-left: 10px;
+    overflow-x: hidden;
+}
+
+.WidgetBody--left > p {
+    line-height: 1.5rem;
+}
+
+.WidgetBody--right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.WidgetBody--right h3 {
+    text-align: right;
+}
+
+.WidgetBody--container h1 {
+    font-size: 4rem;
+}
+
+.WidgetBody--temperatureTimeline {
+    width: 100%;
+    height: 150px;
+
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    overflow-x: scroll;
+}
+
+.HourlyWeather--container {
+    min-width: 150px;
+    height: 100%;
+    
+    margin: 0 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

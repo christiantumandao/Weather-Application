@@ -1,24 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
+import { Route, Routes } from 'react-router-dom';
+
+import NavBar from './Components/NavBar/NavBar';
+import Widget from './Components/WidgetContainer/WidgetContainer';
+import Login from './Components/Login/Login';
+import SignUp from './Components/SignUp/SignUp';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebaseConfig';
+import { fetchUserData } from './util/users';
+import { User } from 'firebase/auth';
+
+type userData = {
+  firstName: string,
+  lastName: string,
+  email: string
+}
+
 function App() {
+
+  const [user] = useAuthState(auth);
+  const [userData, setUserData] = useState<userData>({
+    firstName: '',
+    lastName: '',
+    email: ''
+  });
+
+  useEffect(()=>{
+    const loadUserData = async (u: User) => {
+      const fetchedData = await fetchUserData(u) as userData;
+      if (fetchedData) setUserData(fetchedData);
+    }
+    if (user) loadUserData(user);
+  },[user])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <NavBar />
+
+        <Routes>
+          <Route path="/" element={<Widget userData = { userData } />}></Route>
+          <Route path="/log-in" element={<Login />}></Route>
+          <Route path="/sign-up" element={<SignUp />}></Route>
+        </Routes>
     </div>
   );
 }

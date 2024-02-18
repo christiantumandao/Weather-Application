@@ -1,0 +1,54 @@
+.Widget--container {
+    margin-top: 20px;
+    width: clamp(600px, 100%, 2048px);
+    height: auto;
+    padding: 15px;
+    padding-bottom: 30px;
+
+    background-color: rgba(0,0,0,.4);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.Widget--header {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--light);
+}
+
+.Widget--header input {
+    border-radius: 7px;
+    font-size: 1rem;
+    padding: .3rem;
+    border: 1px solid black;
+
+}
+.Widget--header input:focus {
+    outline: none;
+    background-color: var(--primary);
+    border: 1px solid black;
+    box-shadow: var(--shadow);
+}
+
+.Widget--header button {
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 7px;
+    padding: .3rem;
+    background-color: transparent;
+    color: var(--light)
+}
+.Widget--header button:hover {
+    background-color: rgba(255,255,255,.5);
+}
+
