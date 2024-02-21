@@ -1,0 +1,88 @@
+.modal--wrapper {
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    background-color: var(--primary);
+    backdrop-filter: blur(5px);
+}
+
+.modal--container {
+    width: clamp(360px, 25%, 720px);
+    height: auto;
+    padding: 10px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 101;
+    transform: translate(-50%, -50%);
+
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.5);
+    box-shadow: var(--shadow);
+}
+
+.modal--container header > h2 {
+    text-align: center;
+}
+
+.modal--container body {
+    padding: 0 20px;
+}
+
+.modal--container body input {
+    width: 100%;
+    color: black;
+    border: 1px solid black;
+}
+
+.modal--container body input:focus {
+    outline: none;
+}
+
+.modal--container footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    margin: 20px 0;
+}
+
+.modal--container footer > button {
+    font-size: 1rem;
+    margin: 0 10px;
+    height: auto !important;
+    width: 100%;
+    box-shadow: var(--shadow);
+
+    font-size: 1.2rem;
+    padding: .3rem;
+}
+
+.modal--confirmButton {
+    background-color: black;
+    color: var(--light);
+    border: none;
+}
+.modal--confirmButton:hover {
+    background-color: rgba(0,0,0,.8);
+}
+
+.modal--wrapper h4 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+
+.modal--wrapper input:focus {
+    background-color: var(--primary);
+    color: var(--light);
+}
