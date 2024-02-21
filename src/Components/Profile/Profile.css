@@ -1,0 +1,89 @@
+.profile-container {
+    margin-top: 20px;
+    width: clamp(600px, 100%, 2048px);
+    height: auto;
+    padding: 15px;
+
+    background-color: rgba(0,0,0,.4);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+
+div.profile-container {
+    padding-bottom: 30px;
+}
+
+.profile-container header {
+    color: white;
+    margin-bottom: 10px;
+}
+
+fieldset {
+    border: none;
+}
+
+.profile-container fieldset > input {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding:.2rem;
+}
+
+.profile-container fieldset > input:focus {
+    outline: none;
+    
+}
+
+body fieldset {
+    width: clamp(360px, 60%, 100%);
+    height: auto;
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body fieldset label {
+    color: white;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+body fieldset > p {
+    color: white;
+}
+
+.profile-buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.profile-buttonContainer > button {
+    background-color: red;
+    font-size: 1rem;
+    padding: .3rem;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.profile-buttonContainer > button:hover {
+    background-color: rgba(255,0,0,.7);
+}
+
+footer.profile-container {
+    padding: 20px;
+}
