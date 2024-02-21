@@ -7,8 +7,9 @@
     top: 0;
     left:0;
 
-    background-color: var(--primary);
+    background-color: rgba(22,22,29, .5);
     box-shadow: var(--shadow);
+    color: white;
 }
 
 .NavBar--navigationContainer {
@@ -46,6 +47,6 @@
 }
 
 .NavBar--navigationContainer a {
-    color: black;
+    color: inherit;
     text-decoration: none;
 }

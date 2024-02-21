@@ -29,11 +29,13 @@ const SignUp = (props: SignUpProps) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
+            resetFields();
             const valid = validateSignUp(firstName, lastName, email, password, confirmPassword, setErrorMessage);
             if (!valid) return;
 
-            await handleSignUp(firstName, lastName, email, password, setErrorMessage);
-            nav("/");
+            const status = await handleSignUp(firstName, lastName, email, password, setErrorMessage);
+
+            if (status) nav("/");
         } catch (e) {
             console.error(e);
             setErrorMessage("Something went wrong. Try again later");
@@ -111,7 +113,7 @@ const SignUp = (props: SignUpProps) => {
                     onChange = { handleConfirmPasswordChange }
                     required
                 />
-                <button type="submit">Sign up</button>
+                <button type="submit">Sign in</button>
             </form>
         </div>
     )

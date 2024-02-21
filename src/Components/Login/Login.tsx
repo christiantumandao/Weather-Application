@@ -24,8 +24,9 @@ const Login = (props: LoginProps) => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            handleLogIn(email, password, setErrorMessage);
-            nav("/");
+            resetFields();
+            const login = await handleLogIn(email, password, setErrorMessage);
+            if (login) nav("/");
         } catch (e) {
             console.error(e);
             setErrorMessage("Something went wrong. Try again later");
@@ -51,7 +52,11 @@ const Login = (props: LoginProps) => {
         <div className="page LoginSignup--page">
             <form className="LoginSignup--form" onSubmit = { handleSubmit }>
                 <label>Log in</label>
-
+                {
+                    (errorMessage.length > 0)
+                    ? <p className="error-message">{ errorMessage }</p>
+                    : null
+                }
                  <input 
                     placeholder="E-mail"
                     type="text"

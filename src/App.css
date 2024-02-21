@@ -12,7 +12,7 @@
   --pagePadding: 0 20%;
   --navBarHeight: 50px;
 
-  --primary: #297373;
+  --primary: rgba(22,22,29, .5);
   --secondary: #FF8552;
   --bgColor: #E6E6E6;
   --darkGray: #39393A;
@@ -48,5 +48,15 @@ html {
 .error-message {
   text-align: center;
   color: red;
+}
+
+input {
+  color: black;
+  font-size: 1.2rem;
+  padding:.3rem;
+}
+
+input:focus {
+  color: var(--light);
 }
 

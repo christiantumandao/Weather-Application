@@ -12,10 +12,6 @@ const NavBar = (props: NavBarProps) => {
 
     const [user] = useAuthState(auth);
 
-    const handleLoginSignUp =()=> {
-
-    }
-
     return (
         <div className="NavBar--container">
 

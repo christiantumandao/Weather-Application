@@ -1,4 +1,4 @@
-footer {
+.Widget--container > footer {
     margin-top: 15px;
     width: 100%;
     height: 100px;
