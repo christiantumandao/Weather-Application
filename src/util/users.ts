@@ -1,42 +1,40 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import {createUserWithEmailAndPassword, deleteUser, getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseConfig"
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { User } from "firebase/auth";
 
 const handleSignUp = async (firstName: string, lastName: string, email: string, password: string, setErrorMessage: (msg: string) => void) => {
-    await createUserWithEmailAndPassword(auth, email, password)
-        .then( async (userCred)=> {
-            const user = userCred.user;
-
-            const userData = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email
-            }
-            await setDoc(doc(db, "userData", user.uid), userData);
-
-
-        })
-        .catch((e)=>{
-            console.error(e);
-            if (e.code) {
-                setErrorMessage(e.code);
-            }
-            else setErrorMessage("Something went wrong. Try again later.");
-            return false;
-        })
+    try {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCred.user;
+        
+        const userData = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+        };
+        await setDoc(doc(db, "userData", user.uid), userData);
+        return true;
+    } catch (e: any) {
+        console.error(e);
+        if (e.code) {
+            setErrorMessage(e.code);
+        } else setErrorMessage("Something went wrong. Try again later.");
+        return false;
+    }
 }
 
 const handleLogIn = async (email: string, password: string, setErrorMessage: (msg: string) => void) => {
     try {
         const userCred = await signInWithEmailAndPassword(auth, email, password)
         const user = userCred.user;
-
+        return true;
     } catch (e: any) {
         console.error(e);
         if (e.code) {
             setErrorMessage(e.code);
         } else setErrorMessage("Something went wrong. Try again later.");
+        return false;
     }
 }
 
@@ -61,4 +59,25 @@ const fetchUserData = async (user: User | null) => {
     
 }
 
-export { handleSignUp, handleLogIn, fetchUserData }
+const deleteProfile = async (password: string, setErrorMessage: (msg :string) => void) => {
+    try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (!user || !user.email) {
+            console.log("Error: user not found");
+            setErrorMessage("There was an issue finding user");
+            return false;
+        };
+        await signInWithEmailAndPassword(auth, user.email, password);
+
+        await deleteUser(user);
+        return true;
+    } catch (error: any) {
+        console.error(error);
+        if (error.code) setErrorMessage(error.code);
+        else setErrorMessage("Something went wrong");
+        return false;
+    }
+}
+
+export { handleSignUp, handleLogIn, fetchUserData, deleteProfile }
