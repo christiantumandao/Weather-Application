@@ -3,6 +3,7 @@ import { userData } from "../../util/types"
 import "./Profile.css";
 import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import Modal from "../Modal/Modal";
 
 type ProfileProps = {
     userData: userData
@@ -12,6 +13,7 @@ const Profile = (props : ProfileProps) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [showModal, setShowModal] = useState(false);
     const nav = useNavigate();
 
     const handleSignOut = () => {
@@ -19,8 +21,15 @@ const Profile = (props : ProfileProps) => {
         nav('/');
     }
 
+    const handleDeleteProfile = async () => {
+
+    }
+
     return (
         <div className="page">
+            {
+                (showModal) ? <Modal modalType = "Delete" setShowModal = { setShowModal }/> : null
+            }
             <div className="profile-container">
                 <header>
                     <h1>Profile</h1>
@@ -60,7 +69,9 @@ const Profile = (props : ProfileProps) => {
                     >
                         Sign Out
                     </button>
-                    <button>Delete Profile</button>
+                    <button
+                        onClick = { () => setShowModal(true)}
+                    >Delete Profile</button>
                 </div>
             </footer>
         </div>
