@@ -11,6 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebaseConfig';
 import { fetchUserData } from './util/users';
 import { User } from 'firebase/auth';
+import Profile from './Components/Profile/Profile';
 
 type userData = {
   firstName: string,
@@ -43,6 +44,7 @@ function App() {
           <Route path="/" element={<Widget userData = { userData } />}></Route>
           <Route path="/log-in" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
+          <Route path="/profile" element={<Profile userData = { userData } />}></Route>
         </Routes>
     </div>
   );
