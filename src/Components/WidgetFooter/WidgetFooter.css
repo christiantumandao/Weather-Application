@@ -1,7 +1,7 @@
 .Widget--container > footer {
     margin-top: 15px;
     width: 100%;
-    height: 100px;
+    height: auto;
     padding: 0 50px;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .DailyWeather--container {
-    min-width: 200px;
+    min-width: 250px;
     height: 100%;
     margin-right: 20px;
     padding: 10px 20px;
@@ -47,14 +47,17 @@
     flex-grow: 1;
 
 }
+.DailyWeather--left > p {
+    font-size: .8rem;
+}
 .DailyWeather--right {
     width: auto;
 }
-.DailyWeather--right > svg {
-    font-size: 64px;
-}
+
 
 .DailyWeather--bottom {
     text-align: center;
+    font-size: 1rem;
+    font-weight: bolder;
     flex-grow: 1;
 }

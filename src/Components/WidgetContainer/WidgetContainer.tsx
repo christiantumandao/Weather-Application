@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./WidgetContainer.css";
-import { userData } from "../../util/types";
+import { location, currentWeather, locationData, userData, Weather } from "../../util/types";
 import WidgetBody from "../WidgetBody/WidgetBody";
 import WidgetFooter from "../WidgetFooter/WidgetFooter";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig";
+import { fetchWeather, findLocations } from "../../util/api";
 
 type WidgetContainerProps = {
     userData: userData
@@ -13,12 +14,32 @@ type WidgetContainerProps = {
 
 const WidgetContainer = (props: WidgetContainerProps) => {
     const [regionQuery, setRegionQuery] = useState("");
+    const [queryResults, setQueryResults] = useState<location[] | undefined>(undefined);
     const { userData } = props;
     const [user] = useAuthState(auth);
 
-    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    const [currLocation, setCurrLocation] = useState<locationData | null>(null);
+    const [weather, setWeather] = useState<Weather | null>(null);
+
+
+    const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        alert('search')
+        try {
+            const locations: location[] | undefined = await findLocations(regionQuery);
+            setQueryResults(locations);
+        } catch (e) {
+            console.error(e);
+        }
+
+        
+        setRegionQuery("");
+    }
+
+    const handleSelectLocation = async (loc: location) => {
+        setCurrLocation(loc);
+        setQueryResults(undefined);
+        const weatherData: Weather | null = await fetchWeather(loc.lat.toString(), loc.lon.toString());
+        setWeather(weatherData);
     }
 
     return (
@@ -39,6 +60,20 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                             onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setRegionQuery(e.target.value)}
                         />
                         <button type='submit'>search</button>
+                        {
+                            (queryResults) ? 
+                            <ul>
+                                {
+                                     queryResults.map((loc,idx)=>(
+                                        <li
+                                            onClick = { () => handleSelectLocation(loc) }
+                                            key = { idx+ loc.lat }
+                                        >{loc.name + ", " + loc.state}</li>
+                                        ))
+                                }
+                            </ul>
+                            : null
+                        }
                     </form>
                     
 
@@ -47,8 +82,8 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                     </button>
 
                 </header>
-                <WidgetBody />
-                <WidgetFooter />
+                <WidgetBody currLocation = { currLocation } weather = { weather } />
+                <WidgetFooter weather = { weather }/>
             </div>
         </div>
     )

@@ -48,6 +48,31 @@
     background-color: transparent;
     color: var(--light)
 }
+
+.Widget--container form {
+    position: relative;
+}
+
+.Widget--container form > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: auto;
+
+    list-style-type: none;
+    background-color: white;
+    border-radius: 5px;
+}
+.Widget--container form > ul > li {
+    color: black;
+    padding: .1rem;
+    font-size: 1rem;
+}
+.Widget--container form > ul > li:hover {
+    background-color: rgba(0,0,0,.4);
+}
+
 .Widget--header button:hover {
     background-color: rgba(255,255,255,.5);
 }
