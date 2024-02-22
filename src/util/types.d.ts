@@ -13,15 +13,6 @@ type location = {
     local_names: any
 }
 
-type locationData = {
-    lat: number,
-    lon: number,
-    country: string,
-    name: string,
-    state: string,
-    local_names: any
-}
-
 type currentWeather = {
     lat: number,
     lon: number,
@@ -61,4 +52,5 @@ type Weather = {
     daily: dailyWeather[]
 }
 
-export { Weather, dailyWeather, currentWeather, userData, hourlyWeather, location, locationData };
+
+export { Weather, dailyWeather, currentWeather, userData, hourlyWeather, location };

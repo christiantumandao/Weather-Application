@@ -1,10 +1,10 @@
-import { getTime } from "../../util/format";
-import { Weather, currentWeather, hourlyWeather, locationData } from "../../util/types";
+import { getFullDate, getTime } from "../../util/format";
+import { Weather, currentWeather, hourlyWeather, location } from "../../util/types";
 import HourlyWeather from "./HourlyWeather";
 import "./WidgetBody.css";
 
 type WidgetBodyProps = {
-    currLocation: locationData | null
+    currLocation: location | null
     weather: Weather | null
 }
 
@@ -20,9 +20,13 @@ const WidgetBody = (props: WidgetBodyProps) => {
                         {
                             (current)?
                             <>
-                                <h1>{`${current.temp}°F`}</h1>
-                                <p>Wind: {current.wind_speed}</p>
-                                <p>Humidity: {current.humidity}</p>
+                                <div className="current-weather">
+                                    <h1>{`${current.temp}°F`} </h1>
+                                    <img src ={`https://openweathermap.org/img/wn/${current.weather_icon}@2x.png`} alt={current.weather_main} /> 
+                                    
+                                </div>
+                                <p>Wind: {current.wind_speed}mph</p>
+                                <p>Humidity: {current.humidity}%</p>
                                 <p>UVI: {current.uvi}</p>
                             </> : null
                         }
@@ -32,7 +36,7 @@ const WidgetBody = (props: WidgetBodyProps) => {
                         {
                             (current) ? 
                             <>
-                                <h3>{current.dt.toLocaleDateString()}</h3>
+                                <h3>{getFullDate(current.dt)}</h3>
                                 <h4>{getTime(current.dt)}</h4>
                             </> : null
                         }

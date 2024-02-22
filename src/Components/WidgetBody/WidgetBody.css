@@ -1,7 +1,8 @@
 .WidgetBody--wrapper {
     margin-top: 25px;
     width: 100%;
-    height: 350px;
+    max-height: 400px;
+    height: auto;
     min-height: 350px;
     padding: 0 50px;
 
@@ -28,7 +29,8 @@ div.WidgetBody--container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    margin-bottom: 10px;
 }
 .WidgetBody--currentLocation > * {
 
@@ -56,9 +58,24 @@ div.WidgetBody--container {
     text-align: right;
 }
 
+.WidgetBody--container .current-weather {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: 100px;
+}
+
 .WidgetBody--container h1 {
     font-size: 4rem;
 }
+
+.current-weather > img {
+    height: 100px;
+    width: 100px;
+    max-height: 100px;
+}
+
 
 .WidgetBody--temperatureTimeline {
     width: 100%;

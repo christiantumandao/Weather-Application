@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./WidgetContainer.css";
-import { location, currentWeather, locationData, userData, Weather } from "../../util/types";
+import { location, currentWeather, userData, Weather } from "../../util/types";
 import WidgetBody from "../WidgetBody/WidgetBody";
 import WidgetFooter from "../WidgetFooter/WidgetFooter";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -18,8 +18,30 @@ const WidgetContainer = (props: WidgetContainerProps) => {
     const { userData } = props;
     const [user] = useAuthState(auth);
 
-    const [currLocation, setCurrLocation] = useState<locationData | null>(null);
+    const [currLocation, setCurrLocation] = useState<location | null>({
+        country: "US",
+        lat:40.6526006,
+        local_names: {},
+        lon: -73.9497211,
+        name: "Brooklyn",
+        state: "New York"
+    });
     const [weather, setWeather] = useState<Weather | null>(null);
+
+    useEffect(()=> {
+        const fetchDefault = async () => {
+            try {
+                if (currLocation){
+                    const defWeather = await fetchWeather(currLocation.lat.toString(), currLocation.lon.toString());
+                    setWeather(defWeather)
+                }
+                
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        fetchDefault();
+    },[])
 
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,6 +58,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
     }
 
     const handleSelectLocation = async (loc: location) => {
+        console.log(loc)
         setCurrLocation(loc);
         setQueryResults(undefined);
         const weatherData: Weather | null = await fetchWeather(loc.lat.toString(), loc.lon.toString());
