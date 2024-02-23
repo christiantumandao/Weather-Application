@@ -54,6 +54,17 @@ div.WidgetBody--container {
     height: 100%;
 }
 
+.WidgetBody--right > button {
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: .3rem;
+}
+.WidgetBody--right > button:hover {
+    background-color: rgba(255,255,255,.5);
+}
+
 .WidgetBody--right h3 {
     text-align: right;
 }

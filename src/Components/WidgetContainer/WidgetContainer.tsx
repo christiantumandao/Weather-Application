@@ -6,27 +6,26 @@ import WidgetFooter from "../WidgetFooter/WidgetFooter";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig";
 import { fetchWeather, findLocations } from "../../util/api";
+import { useNavigate } from "react-router-dom";
 
 type WidgetContainerProps = {
-    userData: userData
+    userData: userData,
+    usersRegions: location[]
+    setUsersRegions: (d: location[]) => void
+    currLocation: location | null
+    setCurrLocation: (loc: location)=> void
 }
 
 
 const WidgetContainer = (props: WidgetContainerProps) => {
     const [regionQuery, setRegionQuery] = useState("");
     const [queryResults, setQueryResults] = useState<location[] | undefined>(undefined);
-    const { userData } = props;
+    const { userData, setUsersRegions, usersRegions, currLocation, setCurrLocation } = props;
     const [user] = useAuthState(auth);
 
-    const [currLocation, setCurrLocation] = useState<location | null>({
-        country: "US",
-        lat:40.6526006,
-        local_names: {},
-        lon: -73.9497211,
-        name: "Brooklyn",
-        state: "New York"
-    });
     const [weather, setWeather] = useState<Weather | null>(null);
+
+    const nav = useNavigate();
 
     useEffect(()=> {
         const fetchDefault = async () => {
@@ -41,7 +40,9 @@ const WidgetContainer = (props: WidgetContainerProps) => {
             }
         }
         fetchDefault();
-    },[])
+
+        
+    },[currLocation])
 
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -58,11 +59,14 @@ const WidgetContainer = (props: WidgetContainerProps) => {
     }
 
     const handleSelectLocation = async (loc: location) => {
-        console.log(loc)
         setCurrLocation(loc);
         setQueryResults(undefined);
         const weatherData: Weather | null = await fetchWeather(loc.lat.toString(), loc.lon.toString());
         setWeather(weatherData);
+    }
+
+    const checkIfAdded = () => {
+        return false;
     }
 
     return (
@@ -100,12 +104,14 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                     </form>
                     
 
-                    <button>
+                    <button
+                        onClick = { ()=> nav("/regions")}
+                    >
                         Regions
                     </button>
 
                 </header>
-                <WidgetBody currLocation = { currLocation } weather = { weather } />
+                <WidgetBody usersRegions = { usersRegions } currLocation = { currLocation } weather = { weather } userData={ userData } setUsersRegions={setUsersRegions} />
                 <WidgetFooter weather = { weather }/>
             </div>
         </div>

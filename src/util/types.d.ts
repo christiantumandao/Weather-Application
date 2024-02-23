@@ -1,7 +1,7 @@
 type userData = {
     firstName: string,
     lastName: string,
-    email: string
+    email: string,
 }
 
 type location = {

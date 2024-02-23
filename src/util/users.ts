@@ -1,7 +1,9 @@
 import {createUserWithEmailAndPassword, deleteUser, getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseConfig"
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { User } from "firebase/auth";
+import { location, userData } from "./types";
+
 
 const handleSignUp = async (firstName: string, lastName: string, email: string, password: string, setErrorMessage: (msg: string) => void) => {
     try {
@@ -53,7 +55,7 @@ const fetchUserData = async (user: User | null) => {
         }
 
     } catch (e) {
-
+        console.error(e);
     }
 
     
@@ -80,4 +82,47 @@ const deleteProfile = async (password: string, setErrorMessage: (msg :string) =>
     }
 }
 
-export { handleSignUp, handleLogIn, fetchUserData, deleteProfile }
+const addRegion = async (loc: location | null, regions: location[], setUsersRegions: (d: location[])=>void) => {
+    
+    const user = auth.currentUser;
+    if (!user || !loc || !regions) return;
+
+    try {
+        const isAdded = checkIfRegionAdded(loc, regions);
+        if (isAdded) return;
+        const ref = collection(db, "userData", user.uid, "regions");
+        await addDoc(ref, {...loc});
+        const newRegions = [ ...regions ];
+        newRegions.push(loc);
+        setUsersRegions(newRegions);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+export const checkIfRegionAdded = (loc: location, regions: location[]) => {
+    for (const region of regions) {
+        if (region.lat === loc.lat && region.lon === loc.lon) return true;
+    }
+    return false;
+}
+
+const fetchUserRegions = async (user: User) => {
+    try {
+        const newRegions:location[] = [];
+        const ref = collection(db, "userData", user.uid, "regions");
+        const querySnapshot = await getDocs(ref);
+        querySnapshot.forEach((doc) => {
+            newRegions.push(doc.data() as location);
+        });
+        return newRegions;
+    } catch (e) {
+        console.error(e);
+        return [];
+    }
+}
+
+
+
+
+export { handleSignUp, handleLogIn, fetchUserData, deleteProfile, addRegion, fetchUserRegions }

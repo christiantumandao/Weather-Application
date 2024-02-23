@@ -1,16 +1,35 @@
+import { useEffect, useState } from "react";
 import { getFullDate, getTime } from "../../util/format";
-import { Weather, currentWeather, hourlyWeather, location } from "../../util/types";
+import { Weather, currentWeather, hourlyWeather, location, userData } from "../../util/types";
+
 import HourlyWeather from "./HourlyWeather";
 import "./WidgetBody.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../firebaseConfig";
+import { doc, updateDoc } from "firebase/firestore";
+import { addRegion, checkIfRegionAdded } from "../../util/users";
 
 type WidgetBodyProps = {
     currLocation: location | null
     weather: Weather | null
+    userData: userData
+    usersRegions: location[]
+    setUsersRegions: (d: location[]) => void
 }
 
 const WidgetBody = (props: WidgetBodyProps) => {
-    const { currLocation, weather } = props;
+    const [regionIsAdded, setRegionIsAdded] = useState(false);
+    const { currLocation, weather, userData, setUsersRegions, usersRegions } = props;
     const current =(weather) ? weather.current : null;
+    const [user] = useAuthState(auth);
+
+    useEffect(()=>{
+        const isAdded = (currLocation) ? checkIfRegionAdded(currLocation, usersRegions) : false;
+        setRegionIsAdded(isAdded);
+        
+    })
+
+
     return (
         <body className="WidgetBody--wrapper">
             <div className="WidgetBody--container">
@@ -23,7 +42,6 @@ const WidgetBody = (props: WidgetBodyProps) => {
                                 <div className="current-weather">
                                     <h1>{`${current.temp}°F`} </h1>
                                     <img src ={`https://openweathermap.org/img/wn/${current.weather_icon}@2x.png`} alt={current.weather_main} /> 
-                                    
                                 </div>
                                 <p>Wind: {current.wind_speed}mph</p>
                                 <p>Humidity: {current.humidity}%</p>
@@ -33,6 +51,15 @@ const WidgetBody = (props: WidgetBodyProps) => {
 
                     </div>
                     <div className="WidgetBody--right">
+                        {
+                            (regionIsAdded) ? null :
+                             <button
+                                onClick = { ()=>{
+                                     addRegion(currLocation, usersRegions, setUsersRegions);
+                                     setRegionIsAdded(true);
+                                }}
+                            >Add region</button>
+                        }
                         {
                             (current) ? 
                             <>

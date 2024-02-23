@@ -9,15 +9,11 @@ import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebaseConfig';
-import { fetchUserData } from './util/users';
-import { User } from 'firebase/auth';
+import { fetchUserData, fetchUserRegions } from './util/users';
+import { User, onAuthStateChanged } from 'firebase/auth';
 import Profile from './Components/Profile/Profile';
-
-type userData = {
-  firstName: string,
-  lastName: string,
-  email: string
-}
+import Regions from './Components/Regions/Regions';
+import { location, userData } from './util/types';
 
 function App() {
 
@@ -25,15 +21,44 @@ function App() {
   const [userData, setUserData] = useState<userData>({
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
   });
+  const [usersRegions, setUsersRegions] = useState<location[]>([]);
+
+  const [currLocation, setCurrLocation] = useState<location | null>({
+    country: "US",
+    lat:40.6526006,
+    local_names: {},
+    lon: -73.9497211,
+    name: "Brooklyn",
+    state: "New York"
+});
+
 
   useEffect(()=>{
-    const loadUserData = async (u: User) => {
+
+    const getUserData = async (u:User) => {
       const fetchedData = await fetchUserData(u) as userData;
-      if (fetchedData) setUserData(fetchedData);
+      if (fetchedData) setUserData(fetchedData)
+      // console.log(fetchedData)
     }
-    if (user) loadUserData(user);
+
+    const getUserRegions = async (u: User) => {
+      const fetchedRegions = await fetchUserRegions(u);
+      setUsersRegions(fetchedRegions);
+    }
+
+    if (user) {
+      getUserData(user);
+      getUserRegions(user);
+    } else {
+      setUserData({
+        firstName: '',
+        lastName: '',
+        email: '',
+      })
+    }
+
   },[user])
 
   return (
@@ -41,10 +66,11 @@ function App() {
         <NavBar />
 
         <Routes>
-          <Route path="/" element={<Widget userData = { userData } />}></Route>
+          <Route path="/" element={<Widget setCurrLocation ={setCurrLocation} currLocation ={ currLocation } usersRegions ={ usersRegions } userData = { userData } setUsersRegions={ setUsersRegions }/>}></Route>
           <Route path="/log-in" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="/profile" element={<Profile userData = { userData } />}></Route>
+          <Route path="/regions" element={<Regions setCurrLocation ={ setCurrLocation } userData = { userData } regions = { usersRegions } />}></Route>
         </Routes>
     </div>
   );

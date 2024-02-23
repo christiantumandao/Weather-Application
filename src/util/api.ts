@@ -68,5 +68,4 @@ const findLocations = async (location: string) => {
 }
 
 
-
 export { fetchWeather, findLocations };
