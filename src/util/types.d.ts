@@ -2,6 +2,7 @@ type userData = {
     firstName: string,
     lastName: string,
     email: string,
+    units: "metric" | "imperial"
 }
 
 type location = {

@@ -32,7 +32,15 @@
 }
 
 .Region--container > h3 {
-    color: var(--light)
+    color: var(--light);
+}
+
+.Region--container > p {
+    color: white;
+}
+
+.Region--container > h3:hover {
+    color: gray;
 }
 
 
@@ -43,8 +51,8 @@
 
 }
 
-.Region--container:hover {
-    color: gray;
+.Region--container:hover > * {
+    color: gray !important;
 }
 
 .Region--container > p {

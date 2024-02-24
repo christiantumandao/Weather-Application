@@ -4,18 +4,19 @@ import "./WidgetFooter.css";
 
 type WidgetFooterProps = {
     weather: Weather | null
+    units: "imperial" | "metric"
 }
 
 
 const WidgetFooter = (props: WidgetFooterProps) => {
-    const { weather } = props;
+    const { weather, units } = props;
     return (
         <footer>
             <div className="WidgetFooter--daysContainer">
             {
                 (weather) ?
                 weather.daily.map((day)=>(
-                    <DailyWeather day = { day }/>
+                    <DailyWeather day = { day } units = { units }/>
                 )) : null
             }
             </div>

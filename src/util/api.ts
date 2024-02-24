@@ -4,11 +4,12 @@ import DailyWeather from "../Components/WidgetFooter/DailyWeather";
 const url = "https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
 const weather_api_key = process.env.REACT_APP_WEATHER_API_KEY;
 
-const fetchWeather = async (lat: string, lon: string, units?: string) => {
+const fetchWeather = async (lat: string, lon: string, units: string) => {
     try {    
-        const res = await axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${weather_api_key}&units=imperial`)
+        if (!units) units = "imperial";
+        const res = await axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,alerts&appid=${weather_api_key}&units=${units}`)
         const resData = res.data;
-        console.log(resData);
+      
         const curr = resData.current;
         const current: currentWeather = {
             lat: resData.lat,

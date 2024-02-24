@@ -17,11 +17,17 @@ import { location, userData } from './util/types';
 
 function App() {
 
+  /**
+   * Add imperial to metric conversion and save settings 
+   * delete region
+   */
+
   const [user] = useAuthState(auth);
   const [userData, setUserData] = useState<userData>({
     firstName: '',
     lastName: '',
     email: '',
+    units: "imperial"
   });
   const [usersRegions, setUsersRegions] = useState<location[]>([]);
 
@@ -44,7 +50,7 @@ function App() {
     }
 
     const getUserRegions = async (u: User) => {
-      const fetchedRegions = await fetchUserRegions(u);
+      const fetchedRegions = await fetchUserRegions(u) as location[];
       setUsersRegions(fetchedRegions);
     }
 
@@ -56,6 +62,7 @@ function App() {
         firstName: '',
         lastName: '',
         email: '',
+        units: "imperial"
       })
     }
 
@@ -69,7 +76,7 @@ function App() {
           <Route path="/" element={<Widget setCurrLocation ={setCurrLocation} currLocation ={ currLocation } usersRegions ={ usersRegions } userData = { userData } setUsersRegions={ setUsersRegions }/>}></Route>
           <Route path="/log-in" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
-          <Route path="/profile" element={<Profile userData = { userData } />}></Route>
+          <Route path="/profile" element={<Profile userData = { userData } setUserData={ setUserData }/>}></Route>
           <Route path="/regions" element={<Regions setCurrLocation ={ setCurrLocation } userData = { userData } regions = { usersRegions } />}></Route>
         </Routes>
     </div>

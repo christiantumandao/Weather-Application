@@ -7,25 +7,13 @@ import { dailyWeather } from "../../util/types";
 
 type DailyWeatherProps = {
     day: dailyWeather
+    units: "imperial" | "metric"
 }
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const monthsOfYear = [
-    'Jan', 
-    'Feb', 
-    'Mar', 
-    'Apr', 
-    'May', 
-    'Jun', 
-    'Jul', 
-    'Aug', 
-    'Sep', 
-    'Oct', 
-    'Nov', 
-    'Dec'
-];
+const monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const DailyWeather = (props: DailyWeatherProps) => {
-    const { day } = props;
+    const { day, units } = props;
 
     return (
         <div className="DailyWeather--container">

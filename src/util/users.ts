@@ -13,7 +13,8 @@ const handleSignUp = async (firstName: string, lastName: string, email: string, 
         const userData = {
             firstName: firstName,
             lastName: lastName,
-            email: email
+            email: email,
+            units: "imperial"
         };
         await setDoc(doc(db, "userData", user.uid), userData);
         return true;
@@ -48,7 +49,7 @@ const fetchUserData = async (user: User | null) => {
         const docSnap = await getDoc(ref);
 
         if (docSnap.exists()) {
-            return docSnap.data();
+            return docSnap.data() as userData; 
         } else {
             console.error("Error finding user");
             return;
@@ -119,6 +120,21 @@ const fetchUserRegions = async (user: User) => {
     } catch (e) {
         console.error(e);
         return [];
+    }
+}
+
+export const changeUserUnits = async (units: "metric" | "imperial") => {
+    try {
+        const user = auth.currentUser;
+        if (!user) return;
+        const ref = doc(db, "userData", user.uid);
+        await updateDoc(ref, {
+            units: units
+        });
+        return true;
+    } catch (e) {
+        console.error(e);
+        return false;
     }
 }
 

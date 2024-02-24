@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userData } from "../../util/types"
 import "./Profile.css";
 import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
+import { changeUserUnits } from "../../util/users";
 
 type ProfileProps = {
-    userData: userData
+    userData: userData,
+    setUserData: (e: userData) => void
 }
 
 const Profile = (props : ProfileProps) => {
@@ -14,7 +16,12 @@ const Profile = (props : ProfileProps) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [units, setUnits] = useState<"imperial" | "metric">(props.userData.units);
     const nav = useNavigate();
+
+    useEffect(()=>{
+        if (units !== props.userData.units) handleChangeUnits();
+    },[units]);
 
     const handleSignOut = () => {
         auth.signOut();
@@ -23,6 +30,17 @@ const Profile = (props : ProfileProps) => {
 
     const handleDeleteProfile = async () => {
 
+    }
+
+    const handleChangeUnits = async () => {
+        try {
+            const status = await changeUserUnits(units);
+            if (status) {
+                props.setUserData({...props.userData, units: units});
+            }
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (
@@ -59,6 +77,27 @@ const Profile = (props : ProfileProps) => {
                             value = { lastName }
                             onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
                             />
+                    </fieldset>
+                    <fieldset>
+                        <label>Units</label>
+                        <div className="units-container">
+                            <label>Metric</label>
+                            <input 
+                                type="checkbox" 
+                                value = {units} 
+                                checked = {units==="metric"}
+                                onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setUnits("metric")}
+                                />
+                            <label>Imperial</label>
+                            <input 
+                                type="checkbox" 
+                                value = {units} 
+                                checked = {units==="imperial"}
+                                onChange = {(e: React.ChangeEvent<HTMLInputElement>) => setUnits("imperial")} />
+                        </div>
+                       
+
+                        
                     </fieldset>
                 </body>
             </div>

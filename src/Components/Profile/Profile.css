@@ -62,6 +62,20 @@ body fieldset > p {
     color: white;
 }
 
+.units-container {
+    width: auto;
+    height: 100%;
+
+}
+
+.units-container label {
+    margin-left: 10px;
+}
+
+.units-container input {
+    margin-left: 5px;
+}
+
 .profile-buttonContainer {
     display: flex;
     flex-direction: row;

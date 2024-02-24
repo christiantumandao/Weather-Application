@@ -8,6 +8,9 @@ import { auth } from "../../firebaseConfig";
 import { fetchWeather, findLocations } from "../../util/api";
 import { useNavigate } from "react-router-dom";
 
+import countries from "i18n-iso-countries";
+countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+
 type WidgetContainerProps = {
     userData: userData,
     usersRegions: location[]
@@ -31,7 +34,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
         const fetchDefault = async () => {
             try {
                 if (currLocation){
-                    const defWeather = await fetchWeather(currLocation.lat.toString(), currLocation.lon.toString());
+                    const defWeather = await fetchWeather(currLocation.lat.toString(), currLocation.lon.toString(), userData.units);
                     setWeather(defWeather)
                 }
                 
@@ -61,7 +64,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
     const handleSelectLocation = async (loc: location) => {
         setCurrLocation(loc);
         setQueryResults(undefined);
-        const weatherData: Weather | null = await fetchWeather(loc.lat.toString(), loc.lon.toString());
+        const weatherData: Weather | null = await fetchWeather(loc.lat.toString(), loc.lon.toString(), userData.units);
         setWeather(weatherData);
     }
 
@@ -95,7 +98,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                                         <li
                                             onClick = { () => handleSelectLocation(loc) }
                                             key = { idx+ loc.lat }
-                                        >{loc.name + ", " + loc.state}</li>
+                                        >{loc.name + ", " + ( (loc.state) ? loc.state : countries.getName(loc.country,"en"))}</li>
                                         ))
                                 }
                             </ul>
@@ -112,7 +115,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
 
                 </header>
                 <WidgetBody usersRegions = { usersRegions } currLocation = { currLocation } weather = { weather } userData={ userData } setUsersRegions={setUsersRegions} />
-                <WidgetFooter weather = { weather }/>
+                <WidgetFooter weather = { weather } units = { userData.units }/>
             </div>
         </div>
     )
