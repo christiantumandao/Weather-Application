@@ -44,14 +44,6 @@ const getFullDate = (time: Date) => {
     return `${day}, ${month} ${time.getDate()}`
 }
 
-const kelvinToCelcius = (temp: number) => {
-
-}
-
-const kelvinToFahrenheit = (temp: number) => {
-
-}
-
 
 
 export { formatHours, getTime, getFullDate };
