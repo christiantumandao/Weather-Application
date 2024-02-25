@@ -18,7 +18,7 @@ import { location, userData } from './util/types';
 function App() {
 
   /**
-   * Add imperial to metric conversion and save settings 
+   * Buttons only work when clicking the text instead of the highlight 
    * delete region
    */
 

@@ -39,10 +39,6 @@
     border-radius: 5px;
 }
 
-.LoginSignup--form input:focus {
-    outline: none;
-    background-color: var(--primary);
-}
 
 .LoginSignup--form button {
     border: none;

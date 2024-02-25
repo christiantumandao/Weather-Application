@@ -34,10 +34,7 @@
 
 }
 .Widget--header input:focus {
-    outline: none;
-    background-color: var(--primary);
-    border: 1px solid black;
-    box-shadow: var(--shadow);
+
 }
 
 .Widget--header button {

@@ -23,7 +23,7 @@
 
 html {
   background-color: var(--bgColor);
-  background-image: url("./media/0_0.png");
+  background-image: url("./media/default.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -54,9 +54,15 @@ input {
   color: black;
   font-size: 1.2rem;
   padding:.3rem;
+  background-color: var(--light);
 }
 
 input:focus {
-  color: var(--light);
+  background-color: white;
+  backdrop-filter: blur(20px);
+
+  outline: none;
+  border: 1px solid black;
+  box-shadow: var(--shadow);
 }
 

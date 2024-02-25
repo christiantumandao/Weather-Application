@@ -22,7 +22,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# cloud
+# cloud / API
+.env
 firebase.json
 .firebaserc
 /src/firebaseConfig.js

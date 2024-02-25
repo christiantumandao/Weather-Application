@@ -47,7 +47,8 @@ const WidgetBody = (props: WidgetBodyProps) => {
                                     <h1>{`${current.temp}°${(userData.units === "imperial") ? "F" : "C"}`} </h1>
                                     <img src ={`https://openweathermap.org/img/wn/${current.weather_icon}@2x.png`} alt={current.weather_main} /> 
                                 </div>
-                                <p>Wind: {current.wind_speed}mph</p>
+
+                                <p>{`Wind: ${current.wind_speed}${(userData.units==="imperial") ? "mph" : "m/s"}`}</p>
                                 <p>Humidity: {current.humidity}%</p>
                                 <p>UVI: {current.uvi}</p>
                             </> : null
