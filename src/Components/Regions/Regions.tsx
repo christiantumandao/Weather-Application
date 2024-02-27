@@ -11,6 +11,7 @@ type RegionsProps = {
     userData: userData
     regions: location[]
     setCurrLocation: (loc: location) => void
+    setUsersRegions: (regions: location[]) => void
 }
 
 const Regions = (props: RegionsProps) => {
@@ -37,7 +38,9 @@ const Regions = (props: RegionsProps) => {
                         {
                         regions.map((region,idx)=>(
                             <Region
+                                regions = { regions }
                                 setCurrLocation = { setCurrLocation }
+                                setUsersRegions = { props.setUsersRegions }
                                 region={region}
                                 key = { idx }
                             />

@@ -1,6 +1,6 @@
 import {createUserWithEmailAndPassword, deleteUser, getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../firebaseConfig"
-import { addDoc, collection, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { User } from "firebase/auth";
 import { location, userData } from "./types";
 
@@ -92,9 +92,9 @@ const addRegion = async (loc: location | null, regions: location[], setUsersRegi
         const isAdded = checkIfRegionAdded(loc, regions);
         if (isAdded) return;
         const ref = collection(db, "userData", user.uid, "regions");
-        await addDoc(ref, {...loc});
+        const snap = await addDoc(ref, {...loc});
         const newRegions = [ ...regions ];
-        newRegions.push(loc);
+        newRegions.push({...loc, id: snap.id});
         setUsersRegions(newRegions);
     } catch (e) {
         console.error(e);
@@ -114,7 +114,9 @@ const fetchUserRegions = async (user: User) => {
         const ref = collection(db, "userData", user.uid, "regions");
         const querySnapshot = await getDocs(ref);
         querySnapshot.forEach((doc) => {
-            newRegions.push(doc.data() as location);
+            const data = { ...doc.data() } as location;
+            data.id = doc.id;
+            newRegions.push(data);
         });
         return newRegions;
     } catch (e) {
@@ -135,6 +137,23 @@ export const changeUserUnits = async (units: "metric" | "imperial") => {
     } catch (e) {
         console.error(e);
         return false;
+    }
+}
+
+export const deleteRegion = async (region: location, regions: location[], setUsersRegions: (regions: location[])=>void) => {
+    try {
+        console.log(region.id);
+        const user = auth.currentUser;
+        if (!user) return;
+        if (!region.id) return;
+        const ref = doc(db, "userData", user.uid, "regions", region.id);
+        await deleteDoc(ref);
+        const newRegions = regions.filter((r)=>r.id !== region.id);
+        setUsersRegions(newRegions);
+
+    } catch (e) {
+        alert("Something went wrong deleting... Try again later.");
+        console.error(e);
     }
 }
 

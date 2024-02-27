@@ -15,8 +15,8 @@ const WidgetFooter = (props: WidgetFooterProps) => {
             <div className="WidgetFooter--daysContainer">
             {
                 (weather) ?
-                weather.daily.map((day)=>(
-                    <DailyWeather day = { day } units = { units }/>
+                weather.daily.map((day, idx)=>(
+                    <DailyWeather key ={idx} day = { day } units = { units }/>
                 )) : null
             }
             </div>

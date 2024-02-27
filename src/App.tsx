@@ -77,7 +77,7 @@ function App() {
           <Route path="/log-in" element={<Login />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="/profile" element={<Profile userData = { userData } setUserData={ setUserData }/>}></Route>
-          <Route path="/regions" element={<Regions setCurrLocation ={ setCurrLocation } userData = { userData } regions = { usersRegions } />}></Route>
+          <Route path="/regions" element={<Regions setCurrLocation ={ setCurrLocation } userData = { userData } regions = { usersRegions } setUsersRegions = { setUsersRegions } />}></Route>
         </Routes>
     </div>
   );

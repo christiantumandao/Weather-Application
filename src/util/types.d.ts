@@ -11,7 +11,8 @@ type location = {
     country: string,
     name: string,
     state: string,
-    local_names: any
+    local_names: any,
+    [key: string]: any
 }
 
 type currentWeather = {

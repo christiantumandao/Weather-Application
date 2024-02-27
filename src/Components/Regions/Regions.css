@@ -6,12 +6,6 @@
     padding-bottom: 0 !important;
 }
 
-.Regions--container > h2 {
-    margin-top: 50px;
-    color: var(--light);
-    text-align: center;
-}
-
 .Regions--header {
     border-bottom: 1px solid var(--light);
     padding-bottom: 10px;
@@ -31,27 +25,54 @@
     overflow-y: scroll;
 }
 
-.Region--container > h3 {
-    color: var(--light);
+.Regions--container > h2 {
+    text-align: center;
+    margin-top: 50px;
+    color: var(--light)
 }
+
+.Region--container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 10px 20px;
+    min-height: 80px;
+    margin-top: 20px;
+
+    background-color: var(--light);
+    border-radius: 5px;
+}
+
+.Region--container > .Region--content {
+    flex-grow: 1;
+}
+
+
+.Region--container > button {
+    background-color: red;
+    border-radius: 5px;
+    border: 1px solid rgba(255,0,0,.9);
+    padding: .5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Region--container > button:hover {
+    background-color: rgba(255,0,0,.3);
+
+}
+
 
 .Region--container > p {
     color: white;
 }
 
-.Region--container > h3:hover {
-    color: gray;
-}
-
-
-.Region--container {
-    width: 100%;
-    padding: 10px 0;
-    min-height: 80px;
-
-}
-
-.Region--container:hover > * {
+.Region--container:hover > .Region--content > h3 {
     color: gray !important;
 }
 
