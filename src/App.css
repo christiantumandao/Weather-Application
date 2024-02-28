@@ -31,10 +31,6 @@ html {
   height: 100%;
 }
 
-.App {
-
-}
-
 .page {
   height: auto;
   min-height: calc(100vh - var(--navBarHeight));
