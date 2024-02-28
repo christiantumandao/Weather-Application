@@ -58,11 +58,20 @@ input {
 }
 
 input:focus {
-  background-color: white;
-  backdrop-filter: blur(20px);
 
   outline: none;
-  border: 1px solid black;
-  box-shadow: var(--shadow);
+}
+
+.display-none {
+  visibility: hidden;
+}
+
+div.blocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 90;
 }
 

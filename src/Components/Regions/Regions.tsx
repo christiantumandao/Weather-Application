@@ -24,7 +24,9 @@ const Regions = (props: RegionsProps) => {
             <div className="Widget--container Regions--container">
                 <header className="Widget--header Regions--header">
                     <h2>Regions</h2>
-                    <button onClick = { ()=> nav("/")}>
+                    <button 
+                        className="regions-weather-button"
+                        onClick = { ()=> nav("/")}>
                         Weather
                     </button>
                 </header>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./WidgetContainer.css";
-import { location, currentWeather, userData, Weather } from "../../util/types";
+import { location, userData, Weather } from "../../util/types";
 import WidgetBody from "../WidgetBody/WidgetBody";
 import WidgetFooter from "../WidgetFooter/WidgetFooter";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig";
 import { fetchWeather, findLocations } from "../../util/api";
 import { useNavigate } from "react-router-dom";
+import { CiSearch } from "react-icons/ci";
 
 import countries from "i18n-iso-countries";
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -45,7 +46,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
         fetchDefault();
 
         
-    },[currLocation])
+    },[currLocation]);
 
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,12 +69,15 @@ const WidgetContainer = (props: WidgetContainerProps) => {
         setWeather(weatherData);
     }
 
-    const checkIfAdded = () => {
-        return false;
-    }
-
     return (
         <div className="page">
+            {
+                (queryResults) ? 
+                    <div className="blocker" onClick = { ()=> setQueryResults(undefined)}></div>
+                    :
+                    null
+                
+            }
             <div className="Widget--container">
                 <header className="Widget--header">
                     {
@@ -82,17 +86,22 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                         : <h2>Hello</h2>
                     }
                     
-                    <form onSubmit = { handleSearch }>
+                    <form onSubmit = { handleSearch }
+                        className={(queryResults) ? "search-region-container-results" : "search-region-container"}
+                    >
                         <input 
+                            
                             type="text"
                             placeholder="Region"
                             value = { regionQuery }
                             onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setRegionQuery(e.target.value)}
                         />
-                        <button type='submit'>search</button>
+                        <button type='submit' className={(regionQuery.length > 0) ? "search-btn" : "search-btn display-none"}><CiSearch /></button>
                         {
                             (queryResults) ? 
-                            <ul>
+                        
+                          
+                            <ul className="query-results-container">
                                 {
                                      queryResults.map((loc,idx)=>(
                                         <li
@@ -102,12 +111,14 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                                         ))
                                 }
                             </ul>
+                        
                             : null
                         }
                     </form>
                     
 
                     <button
+                        className="regions-weather-button"
                         onClick = { ()=> nav("/regions")}
                     >
                         Regions
