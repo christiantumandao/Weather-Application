@@ -1,7 +1,5 @@
 import axios from "axios"; 
 import { location, currentWeather, hourlyWeather, Weather, dailyWeather } from "./types";
-import DailyWeather from "../Components/WidgetFooter/DailyWeather";
-const url = "https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
 const weather_api_key = process.env.REACT_APP_WEATHER_API_KEY;
 
 const fetchWeather = async (lat: string, lon: string, units: string) => {
@@ -50,7 +48,6 @@ const fetchWeather = async (lat: string, lon: string, units: string) => {
             hourly: hourlyWeathers,
             daily: dailyWeathers
         }
-        console.log(data);
 
         return data;
     } catch (e) {

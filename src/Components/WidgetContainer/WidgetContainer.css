@@ -26,14 +26,17 @@
     color: var(--light);
 }
 
-.Widget--header input {
+.Widget--header .search-bar {
     border-radius: 0;
     font-size: 1rem;
     padding: .3rem;
     border: none;
     background-color: transparent;
     height: 100%;
+}
 
+.search-region-container:focus-within {
+    background-color: var(--light);
 }
 
 .Widget--header .regions-weather-button {
@@ -60,7 +63,7 @@
 
 .search-region-container {
     position: relative;
-    z-index: 95;
+    z-index: 100;
 
     border: 1px solid black;
     background-color: var(--light);
@@ -71,50 +74,44 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-  
 }
 
-form.search-region-container-results {
-    position: relative;
-    border: 1px solid black;
-    background-color: var(--light);
+.search-region-container-results {
     box-shadow: var(--shadow);
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     border-bottom: none;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-
-    box-shadow: var(--shadow);
 }
 
-.Widget--container form > .query-results-container {
-    position: absolute;
-    top: 100%;
-    left: -1px;
+
+.query-results-container {
     width: calc(100% + 2px);
     height: auto;
+
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    left: -1px;
+
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     list-style-type: none;
     background-color: var(--light);
 }
-.Widget--container form > .query-results-container > li {
+.query-results-container > li {
     color: black;
     padding: .3rem;
     font-size: 1rem;
     margin: 5px 0;
 }
-.Widget--container form > .query-results-container > li:hover {
+.query-results-container > li:hover {
     background-color: rgba(0,0,0,.4);
 }
 
@@ -126,3 +123,13 @@ form.search-region-container-results {
     color: gray;
 }
 
+
+.blocker {
+    position: fixed;
+    top: 0;
+    left:0; 
+  
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+  }

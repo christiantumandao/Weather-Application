@@ -16,7 +16,8 @@
   --secondary: #FF8552;
   --bgColor: #E6E6E6;
   --darkGray: #39393A;
-  --light: rgba(254,251,234,.9);
+  --light: rgb(254,251,234);
+  --eigen: #16161d;
 
   --shadow: 0px 1px 12px rgba(0,0,0,0.3);
 }
@@ -54,7 +55,6 @@ input {
 }
 
 input:focus {
-
   outline: none;
 }
 
@@ -62,12 +62,4 @@ input:focus {
   visibility: hidden;
 }
 
-div.blocker {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 90;
-}
 

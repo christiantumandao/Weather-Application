@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { getFullDate, getTime } from "../../util/format";
-import { Weather, currentWeather, hourlyWeather, location, userData } from "../../util/types";
+import { Weather, location, userData } from "../../util/types";
 import countries from "i18n-iso-countries";
 
 import HourlyWeather from "./HourlyWeather";
 import "./WidgetBody.css";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../../firebaseConfig";
-import { doc, updateDoc } from "firebase/firestore";
 import { addRegion, checkIfRegionAdded } from "../../util/users";
 
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
@@ -24,17 +21,16 @@ const WidgetBody = (props: WidgetBodyProps) => {
     const [regionIsAdded, setRegionIsAdded] = useState(false);
     const { currLocation, weather, userData, setUsersRegions, usersRegions } = props;
     const current =(weather) ? weather.current : null;
-    const [user] = useAuthState(auth);
 
     useEffect(()=>{
         const isAdded = (currLocation) ? checkIfRegionAdded(currLocation, usersRegions) : false;
         setRegionIsAdded(isAdded);
         
-    })
+    },[currLocation, usersRegions])
 
 
     return (
-        <body className="WidgetBody--wrapper">
+        <div className="WidgetBody--wrapper">
             <div className="WidgetBody--container">
                 <div className="WidgetBody--currentLocation">
                     <div className="WidgetBody--left">
@@ -89,7 +85,7 @@ const WidgetBody = (props: WidgetBodyProps) => {
                     }
                 </div>
             </div>
-        </body>
+        </div>
     )
 }
 

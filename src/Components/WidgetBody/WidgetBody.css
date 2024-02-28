@@ -62,7 +62,7 @@ div.WidgetBody--container {
     padding: .3rem;
 }
 .WidgetBody--right > button:hover {
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(0,0,0,.1);
 }
 
 .WidgetBody--right h3 {

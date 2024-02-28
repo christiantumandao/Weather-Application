@@ -142,7 +142,6 @@ export const changeUserUnits = async (units: "metric" | "imperial") => {
 
 export const deleteRegion = async (region: location, regions: location[], setUsersRegions: (regions: location[])=>void) => {
     try {
-        console.log(region.id);
         const user = auth.currentUser;
         if (!user) return;
         if (!region.id) return;

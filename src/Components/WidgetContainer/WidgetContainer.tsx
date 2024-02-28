@@ -46,7 +46,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
         fetchDefault();
 
         
-    },[currLocation]);
+    },[currLocation, userData.units]);
 
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,13 +71,6 @@ const WidgetContainer = (props: WidgetContainerProps) => {
 
     return (
         <div className="page">
-            {
-                (queryResults) ? 
-                    <div className="blocker" onClick = { ()=> setQueryResults(undefined)}></div>
-                    :
-                    null
-                
-            }
             <div className="Widget--container">
                 <header className="Widget--header">
                     {
@@ -85,12 +78,16 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                         ? <h2>Hello, { userData.firstName }</h2>
                         : <h2>Hello</h2>
                     }
+
+            {
+                (queryResults) ? <div className="blocker" onClick = { () => setQueryResults(undefined) }></div> : null
+            }
                     
                     <form onSubmit = { handleSearch }
-                        className={(queryResults) ? "search-region-container-results" : "search-region-container"}
+                        className={(queryResults) ? "search-region-container search-region-container-results" : "search-region-container"}
                     >
                         <input 
-                            
+                            className="search-bar"
                             type="text"
                             placeholder="Region"
                             value = { regionQuery }
@@ -99,23 +96,22 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                         <button type='submit' className={(regionQuery.length > 0) ? "search-btn" : "search-btn display-none"}><CiSearch /></button>
                         {
                             (queryResults) ? 
+                                <ul className="query-results-container">
+                                    {
+                                        queryResults.map((loc,idx) => (
+                                            <li
+                                                onClick = { () => handleSelectLocation(loc) }
+                                                key = { idx+ loc.lat }>
+                                                    {loc.name + ", " + ( (loc.state) ? loc.state : countries.getName(loc.country,"en"))}
+                                            </li>
+                                            ))
+
+                                    }
+                                </ul>
                         
-                          
-                            <ul className="query-results-container">
-                                {
-                                     queryResults.map((loc,idx)=>(
-                                        <li
-                                            onClick = { () => handleSelectLocation(loc) }
-                                            key = { idx+ loc.lat }
-                                        >{loc.name + ", " + ( (loc.state) ? loc.state : countries.getName(loc.country,"en"))}</li>
-                                        ))
-                                }
-                            </ul>
-                        
-                            : null
+                                : null
                         }
-                    </form>
-                    
+                    </form>        
 
                     <button
                         className="regions-weather-button"
@@ -125,8 +121,10 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                     </button>
 
                 </header>
+                
                 <WidgetBody usersRegions = { usersRegions } currLocation = { currLocation } weather = { weather } userData={ userData } setUsersRegions={setUsersRegions} />
                 <WidgetFooter weather = { weather } units = { userData.units }/>
+                
             </div>
         </div>
     )

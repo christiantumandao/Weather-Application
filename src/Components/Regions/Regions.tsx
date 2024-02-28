@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { location, userData } from "../../util/types";
 import "../WidgetContainer/WidgetContainer.css";
 import "./Regions.css";
-import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebaseConfig";
 import { Region } from "./Region";

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./SignUp.css";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+
 import { validateSignUp } from "../../util/validation";
 import { handleSignUp } from "../../util/users";
 import { useNavigate } from "react-router-dom";

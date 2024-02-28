@@ -12,36 +12,34 @@ type ProfileProps = {
 }
 
 const Profile = (props : ProfileProps) => {
-
+    const { userData, setUserData } = props
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [units, setUnits] = useState<"imperial" | "metric">(props.userData.units);
+    const [units, setUnits] = useState<"imperial" | "metric">(userData.units);
     const nav = useNavigate();
 
+
     useEffect(()=>{
-        if (units !== props.userData.units) handleChangeUnits();
-    },[units]);
+        const handleChangeUnits = async () => {
+            try {
+                const status = await changeUserUnits(units);
+                if (status) {
+                    setUserData({...userData, units: units});
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        if (units !== userData.units) handleChangeUnits();
+    },[units, userData.units, props, userData, setUserData]);
 
     const handleSignOut = () => {
         auth.signOut();
         nav('/');
     }
 
-    const handleDeleteProfile = async () => {
-
-    }
-
-    const handleChangeUnits = async () => {
-        try {
-            const status = await changeUserUnits(units);
-            if (status) {
-                props.setUserData({...props.userData, units: units});
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }
 
     return (
         <div className="page">
@@ -53,7 +51,7 @@ const Profile = (props : ProfileProps) => {
                     <h1>Profile</h1>
                 </header>
 
-                <body>
+                <div className="Profile--body">
                     <fieldset>
                         <label>E-mail</label>
                         <p>{ props.userData.email }</p>
@@ -99,7 +97,7 @@ const Profile = (props : ProfileProps) => {
 
                         
                     </fieldset>
-                </body>
+                </div>
             </div>
             <footer className="profile-container">
                 <div className="profile-buttonContainer">

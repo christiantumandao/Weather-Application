@@ -41,7 +41,7 @@ fieldset {
     
 }
 
-body fieldset {
+.Profile--body fieldset {
     width: clamp(360px, 60%, 100%);
     height: auto;
     margin-top: 10px;
@@ -52,13 +52,13 @@ body fieldset {
     align-items: center;
 }
 
-body fieldset label {
+.Profile--body fieldset label {
     color: white;
     font-size: 1rem;
     font-weight: bolder;
 }
 
-body fieldset > p {
+.Profile--body fieldset > p {
     color: white;
 }
 

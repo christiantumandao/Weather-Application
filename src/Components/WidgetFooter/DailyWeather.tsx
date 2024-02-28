@@ -1,6 +1,3 @@
-import { FaCloudShowersHeavy } from "react-icons/fa";
-import { FaCloud } from "react-icons/fa";
-import { FaSun } from "react-icons/fa";
 import { dailyWeather } from "../../util/types";
 
 
@@ -13,7 +10,7 @@ const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Fri
 const monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const DailyWeather = (props: DailyWeatherProps) => {
-    const { day, units } = props;
+    const { day } = props;
 
     return (
         <div className="DailyWeather--container">

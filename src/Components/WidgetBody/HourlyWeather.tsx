@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { formatHours } from "../../util/format";
 import { hourlyWeather, userData } from "../../util/types";
 
@@ -9,8 +8,6 @@ type hourlyWeatherProps = {
 
 const HourlyWeather = (props: hourlyWeatherProps) => {
     const { userData, hourData }= props;
-
-    const [weatherIcon, setWeatherIcon] = useState()
 
     return (
         <div className="HourlyWeather--container">
