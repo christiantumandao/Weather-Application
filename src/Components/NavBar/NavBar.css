@@ -7,7 +7,9 @@
     top: 0;
     left:0;
 
-    background-color: rgba(22,22,29, .5);
+    
+    background-color: rgba(0,0,0,.4);
+    backdrop-filter: blur(15px);
     box-shadow: var(--shadow);
     color: white;
 }

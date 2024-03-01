@@ -26,7 +26,6 @@ export const Region = (props: RegionProps) => {
 
     const handleDeleteRegion = async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.stopPropagation();
-     
         await deleteRegion(region, regions, setUsersRegions);
     }
 // alpha-2 => 
@@ -38,12 +37,15 @@ export const Region = (props: RegionProps) => {
                 <h3>{`${region.name}, ${countries.getName(region.country, "en")}`}</h3>
                 <p>{`${region.lat}, ${region.lon}`}</p>
             </div>
+            
 
             <button 
                 onClick={ handleDeleteRegion }
                 className="Region--deleteRegion">
                     <FaTrash />
             </button>
+        
+
             
         </div>
     )

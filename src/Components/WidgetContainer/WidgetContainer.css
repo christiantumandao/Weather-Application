@@ -6,7 +6,7 @@
     padding-bottom: 30px;
 
     background-color: rgba(0,0,0,.4);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     border-radius: 10px;
     box-shadow: var(--shadow);
     border: 1px solid rgba(0,0,0,.1);
