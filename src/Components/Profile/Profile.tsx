@@ -4,7 +4,8 @@ import "./Profile.css";
 import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
-import { changeUserUnits } from "../../util/users";
+import { changeFirstName, changeLastName, changeUserUnits } from "../../util/users";
+
 
 type ProfileProps = {
     userData: userData,
@@ -40,6 +41,22 @@ const Profile = (props : ProfileProps) => {
         nav('/');
     }
 
+    const handleChangeFirstName = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await changeFirstName(firstName);
+        const newUserData = { ... userData, firstName: firstName};
+        setUserData(newUserData);
+        setFirstName("");
+    }
+
+    const handleChangeLastName = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await changeLastName(lastName);
+        const newUserData = { ... userData, lastName: lastName};
+        setUserData(newUserData);
+        setLastName("");
+    }
+
 
     return (
         <div className="page">
@@ -60,25 +77,41 @@ const Profile = (props : ProfileProps) => {
                         <label>
                             First Name
                         </label>
-                        <input 
-                            type = "text"
-                            placeholder={ props.userData.firstName }
-                            value = { firstName }
-                            onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
-                        />
+
+                        <form onSubmit={ handleChangeFirstName } className="profile-input-container">
+                            <input 
+                                type = "text"
+                                placeholder={ props.userData.firstName }
+                                value = { firstName }
+                                onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                className={(firstName.length > 0) ? "change-profile-field" : "change-profile-field display-none"}
+                                >CHANGE</button>
+                        </form>
+
+
+                 
                     </fieldset>
                     <fieldset>
                         <label>Last Name</label>
-                        <input 
-                            type = "text"
-                            placeholder={ props.userData.lastName }
-                            value = { lastName }
-                            onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
-                            />
+                        <form onSubmit = { handleChangeLastName } className="profile-input-container">
+                            <input 
+                                type = "text"
+                                placeholder={ props.userData.lastName }
+                                value = { lastName }
+                                onChange = { (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+                                />
+                            <button
+                                type="submit"
+                                className={(lastName.length > 0) ? "change-profile-field" : "change-profile-field display-none"}
+                                >CHANGE</button>
+                        </form>
                     </fieldset>
                     <fieldset>
                         <label>Units</label>
-                        <div className="units-container">
+                        <form className="units-container">
                             <label>Metric</label>
                             <input 
                                 type="checkbox" 
@@ -92,7 +125,7 @@ const Profile = (props : ProfileProps) => {
                                 value = {units} 
                                 checked = {units==="imperial"}
                                 onChange = {(e: React.ChangeEvent<HTMLInputElement>) => setUnits("imperial")} />
-                        </div>
+                        </form>
                        
 
                         

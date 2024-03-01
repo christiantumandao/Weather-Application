@@ -44,7 +44,6 @@ const handleLogIn = async (email: string, password: string, setErrorMessage: (ms
 const fetchUserData = async (user: User | null) => {
     try {
         if (!user) return;
-
         const ref = doc(db, "userData", user.uid);
         const docSnap = await getDoc(ref);
 
@@ -152,6 +151,40 @@ export const deleteRegion = async (region: location, regions: location[], setUse
 
     } catch (e) {
         alert("Something went wrong deleting... Try again later.");
+        console.error(e);
+    }
+}
+
+export const changeFirstName = async (firstName: string) => {
+    try {
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Something went wrong finding user");
+            return;
+        }
+        const ref = doc(db, "userData", user.uid);
+        await updateDoc(ref, {
+            firstName: firstName
+        })
+
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+export const changeLastName = async (lastName: string) => {
+    try {
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Something went wrong finding user");
+            return;
+        }
+        const ref = doc(db, "userData", user.uid);
+        await updateDoc(ref, {
+            lastName: lastName
+        })
+        
+    } catch (e) {
         console.error(e);
     }
 }

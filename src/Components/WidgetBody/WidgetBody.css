@@ -32,9 +32,7 @@ div.WidgetBody--container {
     align-items: flex-start;
     margin-bottom: 10px;
 }
-.WidgetBody--currentLocation > * {
 
-}
 
 .WidgetBody--left {
     flex-grow: 1;

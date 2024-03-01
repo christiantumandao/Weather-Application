@@ -29,16 +29,48 @@ fieldset {
     border: none;
 }
 
-.profile-container fieldset > input {
+.profile-input-container {
+    height: auto;
+    
     border: 1px solid black;
     border-radius: 5px;
+    background-color: var(--light);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-container .profile-input-container > input {
+    height: 100%;
+    flex-grow: 1;
+    width: auto;
+
+    border: none;
+    background-color: transparent;
+
     font-size: 1rem;
     padding:.2rem;
 }
 
-.profile-container fieldset > input:focus {
+.profile-container fieldset input:focus {
     outline: none;
     
+}
+
+.change-profile-field {
+    height: 100%;
+    width: auto;
+    padding: .3rem;
+    color: black;
+
+    border: none;
+    background-color: transparent;   
+}
+
+.change-profile-field:hover {
+    color: gray;
 }
 
 .Profile--body fieldset {
