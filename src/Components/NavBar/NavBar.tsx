@@ -23,6 +23,7 @@ const NavBar = (props: NavBarProps) => {
                     <li><Link to="log-in">Login/Sign Up</Link></li> 
                     : 
                     <li><Link to="profile">Profile</Link></li> }
+                <li className="regionsNavTab">Regions</li>
             </ul>
         </nav>
         </div>

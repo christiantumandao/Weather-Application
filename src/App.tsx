@@ -10,17 +10,12 @@ import SignUp from './Components/SignUp/SignUp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebaseConfig';
 import { fetchUserData, fetchUserRegions } from './util/users';
-import { User, onAuthStateChanged } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import Profile from './Components/Profile/Profile';
 import Regions from './Components/Regions/Regions';
 import { location, userData } from './util/types';
 
 function App() {
-
-  /**
-   * Buttons only work when clicking the text instead of the highlight 
-   * delete region
-   */
 
   const [user] = useAuthState(auth);
   const [userData, setUserData] = useState<userData>({

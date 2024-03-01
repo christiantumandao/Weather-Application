@@ -15,10 +15,10 @@ const monthsOfYear = [
 ];
 
 const formatHours = (hours: number) => {
-    if (hours > 12) return `${hours-12}:00pm`;
-    else if (hours === 12) return `12:00pm`;
-    else if (hours===0) return "12:00am";
-    else return `${hours}:00am`;
+    if (hours > 12) return `${hours-12}pm`;
+    else if (hours === 12) return `12pm`;
+    else if (hours===0) return "12am";
+    else return `${hours}am`;
 }
 
 const getTime = (time: Date) => {

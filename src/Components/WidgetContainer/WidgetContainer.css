@@ -4,6 +4,7 @@
     height: auto;
     padding: 15px;
     padding-bottom: 30px;
+    position: static;
 
     background-color: rgba(0,0,0,.4);
     backdrop-filter: blur(15px);
