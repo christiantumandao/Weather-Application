@@ -97,7 +97,7 @@ header.Widget--header {
     height: auto;
 
     position: absolute;
-    z-index: inherit;
+    z-index: 100;
     top: 100%;
     left: -1px;
 
@@ -117,6 +117,8 @@ header.Widget--header {
     padding: .3rem;
     font-size: 1rem;
     margin: 5px 0;
+
+    z-index: inherit;
 }
 .query-results-container > li:hover {
     background-color: rgba(0,0,0,.4);
@@ -133,10 +135,10 @@ header.Widget--header {
 
 .blocker {
     position: fixed;
+    z-index: 1;
     top: 0;
-    left:0; 
-  
-    z-index: 0;
+    left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+
   }
