@@ -41,7 +41,7 @@ export const Region = (props: RegionProps) => {
 
             <button 
                 onClick={ handleDeleteRegion }
-                className="Region--deleteRegion">
+                className="Region--deleteRegion red-btn">
                     <FaTrash />
             </button>
         

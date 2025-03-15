@@ -1,8 +1,7 @@
 .Widget--container > footer {
-    margin-top: 15px;
+    margin: 15px 0;
     width: 100%;
     height: auto;
-    padding: 0 50px;
     position: static;
 }
 
@@ -12,6 +11,7 @@
 
     border-radius: 10px;
     overflow-x: scroll;
+    padding: 5px 50px;
 
     display: flex;
     flex-direction: row;
@@ -26,9 +26,10 @@
     padding: 10px 20px;
 
     /* background-color: var(--light);*/
-    background-color: var(--darker);
+    background-color: var(--lighter);
     border-radius: 10px;
     color: var(--light);
+    box-shadow: var(--shadow);
 
     display: flex;
     flex-direction: column;

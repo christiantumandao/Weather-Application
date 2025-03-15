@@ -123,8 +123,8 @@ const WidgetContainer = (props: WidgetContainerProps) => {
             <header className="Widget--header">
                 {
                     (user)
-                    ? <h2>Hello, { userData.firstName }</h2>
-                    : <h2>Hello</h2>
+                    ? <h2 className = "greeting">Hello, { userData.firstName }</h2>
+                    : <h2 className = "greeting">Hello</h2>
                 }
 
                 { getSearchBar() }

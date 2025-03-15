@@ -61,12 +61,12 @@ const Profile = (props : ProfileProps) => {
 
 
     return (
-        <div className="page">
+        <div className="page profile-wrapper">
             {
                 (showModal) ? <Modal modalType = "Delete" setShowModal = { setShowModal }/> : null
             }
             <div className="profile-container">
-                <header className="Widget--header">
+                <header className="Profile--header">
                     <h2>Profile</h2>
                 </header>
 
@@ -137,11 +137,13 @@ const Profile = (props : ProfileProps) => {
             <footer className="profile-container">
                 <div className="profile-buttonContainer">
                     <button
+                        className="red-btn"
                         onClick={ handleSignOut }
                     >
                         Sign Out
                     </button>
                     <button
+                        className="red-btn"
                         onClick = { () => setShowModal(true)}
                     >Delete Profile</button>
                 </div>

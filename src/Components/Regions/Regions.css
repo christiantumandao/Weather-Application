@@ -1,12 +1,6 @@
-.Regions--container {
-
-}
-
 .Regions--header {
     border-bottom: var(--border);
-    margin-bottom: 10px;
 }
-
 
 .regions--container {
     width: 100%;
@@ -18,13 +12,15 @@
     justify-content: flex-start;
     align-items: flex-start;
 
-    overflow-y: scroll;
+    padding: 15px;
+    padding-top: 0;
+
 }
 
 .Regions--container > h2, .Region--container > a {
     text-align: center;
-    margin-top: 50px;
-    color: black;
+    margin: 50px;
+    color: color;
     width: 100%;;
 }
 
@@ -39,7 +35,7 @@
     min-height: 80px;
     margin-top: 20px;
 
-    background-color: black;
+    background-color: var(--lighter);
     border-radius: 5px;
 }
 
@@ -49,9 +45,7 @@
 
 
 .Region--container > button {
-    background-color: red;
     border-radius: 5px;
-    border: 1px solid rgba(255,0,0,.9);
     padding: .5rem;
 
     display: flex;
@@ -59,18 +53,20 @@
     align-items: center;
 }
 
-.Region--container > button:hover {
-    background-color: rgba(255,0,0,.3);
-
+.Region--content > h3, 
+.Region--content > p {
+    color: white;
 }
+
+
 
 
 .Region--container > p {
-    color: black;;
+    color: white;;
 }
 
-.Region--container:hover > .Region--content > h3 {
-    color: gray !important;
+.Region--container:hover {
+    background-color: rgba(255,255,255,.35);
 }
 
 .Region--container > p {

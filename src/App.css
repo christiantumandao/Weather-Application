@@ -27,8 +27,8 @@
 }
 
 body {
-  background-color: var(--bgColor);
-  background-image: url("./media/default.jpg");
+  background-color: #66b2e1;
+  background-image: radial-gradient(circle at -29% -35%, #d1d1d13d 42%, transparent 44.05%),radial-gradient(circle at 153% 54%, #ffffff27 44%, transparent 48.05%),radial-gradient(circle at 15% 59%, #ffffff39 53%, transparent 56.05%),linear-gradient(337deg, #ffffff32 51%, transparent 61.05%),radial-gradient(circle at 85% -85%, #ffffff70 57%, transparent 71.05%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -50,10 +50,20 @@ body {
   color: red;
 }
 
+.red-btn {
+    background-color: red;
+    border: 1px solid rgba(255,0,0,.9);
+}
+.red-btn:hover {
+  background-color: rgba(255,0,0,.3);
+
+}
+
 input {
   color: black;
   font-size: 1.2rem;
   padding:.3rem;
+  background-color: var(--lighter);
 }
 
 input:focus {
@@ -61,7 +71,7 @@ input:focus {
 }
 
 .display-none {
-  visibility: hidden;
+  display: none;
 }
 
 
@@ -71,19 +81,33 @@ input:focus {
   }
   .Widget--header,
   div.WidgetBody--wrapper,
-  div.Widget--container > footer  {
+  div.WidgetFooter--daysContainer  {
     padding: 0 10px;
   }
-  .Widget--header > h2 {
+  .Widget--header > .greeting {
     display: none;
   }
+  div.WidgetFooter--daysContainer {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  div.Profile--body fieldset {
+    width: 80%;
+  }
+
 }
 
 @media (max-width: 768px) {
 
   div.Widget--container {
-    width: clamp(360px, 100%, 2048px);
+    width: clamp(320px, 100%, 2048px);
 
+  }
+
+
+  div.Profile--body fieldset {
+    width: 100%;
   }
 
 
@@ -108,18 +132,32 @@ input:focus {
   button.regions-weather-button {
     display: none;
   }
-  header.Widget--header {
+  .Widget--container header.Widget--header {
     justify-content: center;
-    width: 100%;;
+    width: 100%;
+    padding-bottom: 0;
   }
   header.Widget--header form {
     width: clamp(360px, 30%, 1080px);
   }
+
+  div.WidgetBody--wrapper,
+  div.WidgetFooter--daysContainer  {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+ 
   input.search-bar {
     width: auto;
     max-width: none;
     flex-grow: 1;
   }
+
+  div.profile-wrapper {
+    padding: 15px;
+  }
+
+
 }
 
 @media (max-width: 425px) {
@@ -140,6 +178,11 @@ input:focus {
   div div.Widget--container {
     margin: 0;
     padding: 0;
+    box-shadow: none;
+  }
+
+  div > div.WidgetBody--container {
+    box-shadow: none;
   }
 
   div div.Widget--header .searchBar {
@@ -225,10 +268,14 @@ input:focus {
     background-color: rgba(254,251,234,.8);
     backdrop-filter: blur(2px);
     border-radius: 10px;
-    padding: 5px 10px;
     box-shadow: var(--shadow);
     border: 1px solid rgb(254,251,234);
-    min-width: 200px;
+    min-width: 150px;
+  }
+
+  div.DailyWeather--container > .DailyWeather--top {
+    flex-direction: column;
+
   }
 
   .WidgetBody--left > p {
@@ -259,10 +306,11 @@ input:focus {
 
   div header.Widget--header {
     position: fixed;
-    bottom: calc(var(--navBarHeight));
+    bottom: calc(var(--navBarHeight) + 10px);
     width: 100%;
     padding: 6px;
     z-index: 100;
+
 
   }
 
@@ -302,6 +350,7 @@ input:focus {
 
   div.WidgetBody--left > h2 {
     text-align: center;
+    padding-top: 10px;
   }
 
   div.WidgetBody--container .current-weather {
@@ -322,6 +371,36 @@ input:focus {
 
   .NavBar--navigationContainer a:hover {
     background-color: transparent;
+}
+
+div > footer.profile-container {
+  width: 100%;
+  position: fixed;
+  bottom: calc(var(--navBarHeight) + 10px);
+  left: 0;
+  padding: 0 15px;
+
+  z-index: 100;
+  min-width: none;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.profile-buttonContainer {
+  background-color: rgba(0,0,0,.4);
+  padding: 15px;
+  border-radius: 10px;
+}
+div.Profile--body > fieldset {
+  width: clamp(none, 60%, 100%) !important;
+}
+
+div.Region--container {
+  background-color: rgba(255, 255, 255, .35);
+}
+div.Region--container:hover {
+  background-color: rgba(255, 255, 255, .5);
 }
   
 }

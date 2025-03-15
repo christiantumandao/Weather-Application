@@ -5,6 +5,7 @@
     height: auto;
     min-height: 350px;
     padding: 0 50px;
+    color: white;
 
 }
 
@@ -13,7 +14,7 @@ div.WidgetBody--container {
     height: 100%;
     min-height: 100%;
     border-radius: 10px;
-    background-color: var(--darker);
+    background-color: var(--lighter);
     padding: 10px;
 
     box-shadow: var(--shadow);
@@ -59,12 +60,14 @@ div.WidgetBody--container {
     border: none;
     border-radius: 5px;
     background-color: transparent;
-    padding: .3rem;
+    padding: 5px 8px;
+    margin-bottom: 5px;
 
-    background-color: var(--lighter);
+    background-color: rgba(0,0,0,.2);
+    color: white;
 }
 .WidgetBody--right > button:hover {
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.3);
 }
 
 .WidgetBody--right h3 {
@@ -114,6 +117,7 @@ div.WidgetBody--container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 
