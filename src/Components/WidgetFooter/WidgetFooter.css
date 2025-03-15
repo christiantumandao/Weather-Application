@@ -25,8 +25,10 @@
     margin-right: 20px;
     padding: 10px 20px;
 
-    background-color: var(--light);
+    /* background-color: var(--light);*/
+    background-color: var(--darker);
     border-radius: 10px;
+    color: var(--light);
 
     display: flex;
     flex-direction: column;
@@ -49,10 +51,21 @@
 
 }
 .DailyWeather--left > p {
-    font-size: .8rem;
+    font-size: 1rem;
 }
 .DailyWeather--right {
     width: auto;
+}
+
+.DailyWeather--temp-range {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.DailyWeather--right img {
+    width: 80px;
+    height: 80px;
 }
 
 

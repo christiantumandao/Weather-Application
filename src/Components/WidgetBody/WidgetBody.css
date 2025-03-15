@@ -13,8 +13,10 @@ div.WidgetBody--container {
     height: 100%;
     min-height: 100%;
     border-radius: 10px;
-    background-color: var(--light);
+    background-color: var(--darker);
     padding: 10px;
+
+    box-shadow: var(--shadow);
 
     display: flex;
     flex-direction: column;
@@ -58,6 +60,8 @@ div.WidgetBody--container {
     border-radius: 5px;
     background-color: transparent;
     padding: .3rem;
+
+    background-color: var(--lighter);
 }
 .WidgetBody--right > button:hover {
     background-color: rgba(0,0,0,.1);

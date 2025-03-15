@@ -1,14 +1,10 @@
 .Regions--container {
-    min-height: 300px;
-    max-height: calc(100vh - 300px);
-    height: auto;
-    padding-top: 20px;
-    padding-bottom: 0 !important;
+
 }
 
 .Regions--header {
-    border-bottom: 1px solid var(--light);
-    padding-bottom: 10px;
+    border-bottom: var(--border);
+    margin-bottom: 10px;
 }
 
 
@@ -28,7 +24,7 @@
 .Regions--container > h2, .Region--container > a {
     text-align: center;
     margin-top: 50px;
-    color: var(--light);
+    color: black;
     width: 100%;;
 }
 
@@ -43,7 +39,7 @@
     min-height: 80px;
     margin-top: 20px;
 
-    background-color: var(--light);
+    background-color: black;
     border-radius: 5px;
 }
 
@@ -70,7 +66,7 @@
 
 
 .Region--container > p {
-    color: white;
+    color: black;;
 }
 
 .Region--container:hover > .Region--content > h3 {

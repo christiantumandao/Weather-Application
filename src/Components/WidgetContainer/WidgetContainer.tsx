@@ -54,7 +54,6 @@ const WidgetContainer = (props: WidgetContainerProps) => {
         const handleClickOutside = (event: MouseEvent) => {
             if (formRef.current && !formRef.current.contains(event.target as Node)) {
                 setQueryResults(undefined); 
-                setRegionQuery("");
             }
         };
 

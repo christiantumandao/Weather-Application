@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { userData } from "../../util/types"
 import "./Profile.css";
+import "../WidgetContainer/WidgetContainer.css";
+
 import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
@@ -64,8 +66,8 @@ const Profile = (props : ProfileProps) => {
                 (showModal) ? <Modal modalType = "Delete" setShowModal = { setShowModal }/> : null
             }
             <div className="profile-container">
-                <header>
-                    <h1>Profile</h1>
+                <header className="Widget--header">
+                    <h2>Profile</h2>
                 </header>
 
                 <div className="Profile--body">

@@ -24,13 +24,11 @@ const DailyWeather = (props: DailyWeatherProps) => {
                     
                 </div>
                 <div className="DailyWeather--right">
-                <img src ={`https://openweathermap.org/img/wn/${day.weather_icon}@2x.png`} alt={day.weather_main} /> 
-                   
+                    <img src ={`https://openweathermap.org/img/wn/${day.weather_icon}@2x.png`} alt={day.weather_main} /> 
+                    <p className="DailyWeather--temp-range">{`${day.minTemp} - ${day.maxTemp}°F`}</p>
                 </div>
             </div>
-            <div className="DailyWeather--bottom">
-                {`${day.minTemp} - ${day.maxTemp}°F`}
-            </div>
+
         </div>
     )
 

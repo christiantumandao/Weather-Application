@@ -6,7 +6,7 @@
     padding-bottom: 30px;
     position: static;
 
-    background-color: rgba(0,0,0,.4);
+    background-color: var(--lighter);
     backdrop-filter: blur(15px);
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -19,12 +19,13 @@
 
 header.Widget--header {
     width: 100%;
-    height: auto;
+    height: 40px;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    color: var(--light);
+    align-items: flex-end;
+    color: black;
     position: relative;
     z-index: 100;
     margin-left: auto;
@@ -36,11 +37,15 @@ header.Widget--header {
     padding: .3rem;
     border: none;
     background-color: transparent;
-    height: 100%;
+    height: auto;
+    color: black;
+}
+.Widget--header .search-bar::placeholder {
+    color: rgba(200,200,200,.5);
 }
 
 .search-region-container:focus-within {
-    background-color: var(--light);
+
 }
 
 .Widget--header .regions-weather-button {
@@ -49,7 +54,7 @@ header.Widget--header {
     border-radius: 7px;
     padding: .5rem;
     background-color: transparent;
-    color: var(--light);
+    color: black;
   
 }
 
@@ -69,15 +74,20 @@ header.Widget--header {
     position: relative;
     z-index: 100;
 
-    border: 1px solid black;
-    background-color: var(--light);
+    background-color: rgba(0,0,0,.5);
+    border: 1px solid transparent;
     box-shadow: var(--shadow);
     border-radius: 5px;
+    color: black;
 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+
+.search-region-container:focus-within {
+    border: var(--border);
 }
 
 .search-region-container-results {
@@ -125,13 +135,12 @@ header.Widget--header {
 }
 
 .regions-weather-button:hover {
-    background-color: rgba(255,255,255,.5);
-}
-
-.search-btn:hover > svg {
     color: gray;
 }
 
+.search-btn:hover > svg {
+    color: black;
+}
 
 .blocker {
     position: fixed;
