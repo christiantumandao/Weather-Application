@@ -85,7 +85,11 @@ const deleteProfile = async (password: string, setErrorMessage: (msg :string) =>
 const addRegion = async (loc: location | null, regions: location[], setUsersRegions: (d: location[])=>void) => {
     
     const user = auth.currentUser;
-    if (!user || !loc || !regions) return;
+    if (!loc || !regions) return;
+    if (!user) {
+        alert("Must be signed in!");
+        return;
+    }
 
     try {
         const isAdded = checkIfRegionAdded(loc, regions);

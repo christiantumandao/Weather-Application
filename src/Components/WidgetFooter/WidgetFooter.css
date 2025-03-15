@@ -3,6 +3,7 @@
     width: 100%;
     height: auto;
     padding: 0 50px;
+    position: static;
 }
 
 .WidgetFooter--daysContainer {

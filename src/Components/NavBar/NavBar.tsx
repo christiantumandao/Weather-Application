@@ -20,10 +20,10 @@ const NavBar = (props: NavBarProps) => {
                 <li className="nav-title">Weather</li>
                 <li><Link to="/">Home</Link></li>
                 { (!user) ? 
-                    <li><Link to="log-in">Login/Sign Up</Link></li> 
+                    <li><Link to="log-in">Login</Link></li> 
                     : 
                     <li><Link to="profile">Profile</Link></li> }
-                <li className="regionsNavTab">Regions</li>
+                <li className="regionsNavTab"><Link to="regions">Regions</Link></li>
             </ul>
         </nav>
         </div>

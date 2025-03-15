@@ -17,7 +17,7 @@
     justify-content: flex-start;
 }
 
-.Widget--header {
+header.Widget--header {
     width: 100%;
     height: auto;
 
@@ -25,6 +25,9 @@
     flex-direction: row;
     justify-content: space-between;
     color: var(--light);
+    position: relative;
+    z-index: 100;
+    margin-left: auto;
 }
 
 .Widget--header .search-bar {
@@ -78,12 +81,14 @@
 }
 
 .search-region-container-results {
+    position: relative;
     box-shadow: var(--shadow);
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom: none;
+    z-index: 100;
 }
 
 
@@ -92,7 +97,7 @@
     height: auto;
 
     position: absolute;
-    z-index: 100;
+    z-index: inherit;
     top: 100%;
     left: -1px;
 
@@ -106,6 +111,7 @@
     list-style-type: none;
     background-color: var(--light);
 }
+
 .query-results-container > li {
     color: black;
     padding: .3rem;
@@ -130,7 +136,7 @@
     top: 0;
     left:0; 
   
-    z-index: 1;
+    z-index: 0;
     width: 100vw;
     height: 100vh;
   }

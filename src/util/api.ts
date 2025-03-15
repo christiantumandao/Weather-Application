@@ -58,7 +58,7 @@ const fetchWeather = async (lat: string, lon: string, units: string) => {
 
 const findLocations = async (location: string) => {
     try {
-        const res = await axios.get(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weather_api_key}`)
+        const res = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${weather_api_key}`);
         return res.data as location[];
     } catch (e) {
         console.error(e);

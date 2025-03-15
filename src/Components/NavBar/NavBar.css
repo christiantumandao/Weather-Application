@@ -6,7 +6,7 @@
     position: fixed;
     top: 0;
     left:0;
-
+    z-index: 1;
     
     background-color: rgba(0,0,0,.4);
     backdrop-filter: blur(15px);
@@ -53,6 +53,6 @@
     border-radius: 10px;
 }
 
-.regionsNavTab {
-    display: hidden;
+nav li.regionsNavTab {
+    display: none;
 }

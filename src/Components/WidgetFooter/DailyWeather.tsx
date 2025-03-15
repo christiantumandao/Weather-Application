@@ -1,7 +1,5 @@
 import { dailyWeather } from "../../util/types";
 
-
-
 type DailyWeatherProps = {
     day: dailyWeather
     units: "imperial" | "metric"
@@ -11,7 +9,6 @@ const monthsOfYear = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'S
 
 const DailyWeather = (props: DailyWeatherProps) => {
     const { day } = props;
-
     return (
         <div className="DailyWeather--container">
             <div className="DailyWeather--top">
@@ -32,7 +29,7 @@ const DailyWeather = (props: DailyWeatherProps) => {
                 </div>
             </div>
             <div className="DailyWeather--bottom">
-            {`${day.minTemp} - ${day.maxTemp}°F`}
+                {`${day.minTemp} - ${day.maxTemp}°F`}
             </div>
         </div>
     )

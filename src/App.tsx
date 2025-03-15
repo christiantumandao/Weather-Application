@@ -17,6 +17,10 @@ import { location, userData } from './util/types';
 
 function App() {
 
+
+  // searching does not work on mobile
+  // profile ui is not media query adjusted
+
   const [user] = useAuthState(auth);
   const [userData, setUserData] = useState<userData>({
     firstName: '',

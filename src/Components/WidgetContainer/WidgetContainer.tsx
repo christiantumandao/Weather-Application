@@ -36,7 +36,7 @@ const WidgetContainer = (props: WidgetContainerProps) => {
             try {
                 if (currLocation){
                     const defWeather = await fetchWeather(currLocation.lat.toString(), currLocation.lon.toString(), userData.units);
-                    setWeather(defWeather)
+                    setWeather(defWeather);
                 }
                 
             } catch (e) {
@@ -71,6 +71,9 @@ const WidgetContainer = (props: WidgetContainerProps) => {
 
     return (
         <div className="page">
+            {
+                (queryResults) ? <div className="blocker" onClick = { () => setQueryResults(undefined) }></div> : null
+            }
             <div className="Widget--container">
                 <header className="Widget--header">
                     {
@@ -78,10 +81,6 @@ const WidgetContainer = (props: WidgetContainerProps) => {
                         ? <h2>Hello, { userData.firstName }</h2>
                         : <h2>Hello</h2>
                     }
-
-            {
-                (queryResults) ? <div className="blocker" onClick = { () => setQueryResults(undefined) }></div> : null
-            }
                     
                     <form onSubmit = { handleSearch }
                         className={(queryResults) ? "search-region-container search-region-container-results" : "search-region-container"}

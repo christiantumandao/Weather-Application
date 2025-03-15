@@ -25,10 +25,11 @@
     overflow-y: scroll;
 }
 
-.Regions--container > h2 {
+.Regions--container > h2, .Region--container > a {
     text-align: center;
     margin-top: 50px;
-    color: var(--light)
+    color: var(--light);
+    width: 100%;;
 }
 
 .Region--container {
@@ -78,4 +79,13 @@
 
 .Region--container > p {
     font-weight: 400;
+}
+
+.Regions--header a {
+    text-align: center;
+    width: 100%;
+}
+
+.regions-header {
+    display: none;
 }

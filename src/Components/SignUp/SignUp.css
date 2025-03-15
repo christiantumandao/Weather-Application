@@ -12,7 +12,7 @@
 
 .LoginSignup--form {
     height: auto;
-    width: clamp(425px, 30%, 1024px);
+    width: clamp(100px, 400px, 1024px);
     padding: 20px;
     margin-top: 50px;
 

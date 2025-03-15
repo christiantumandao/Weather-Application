@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { location, userData } from "../../util/types";
 import "../WidgetContainer/WidgetContainer.css";
 import "./Regions.css";
@@ -31,7 +31,11 @@ const Regions = (props: RegionsProps) => {
                 </header>
                 {
                     (!user) ? 
-                    <h2>You need to be signed in to add regions</h2> :
+                    <>
+                    <h2>You need to be signed in to add regions. <Link to="/log-in">Sign in here</Link></h2>
+                    
+                    </>
+                     :
                     (!userData) ? null :
                     (regions.length === 0) ? 
                     <h2>You don't have any regions added</h2> :

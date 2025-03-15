@@ -6,6 +6,8 @@ import countries from "i18n-iso-countries";
 import HourlyWeather from "./HourlyWeather";
 import "./WidgetBody.css";
 import { addRegion, checkIfRegionAdded } from "../../util/users";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebaseConfig";
 
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
@@ -21,6 +23,7 @@ const WidgetBody = (props: WidgetBodyProps) => {
     const [regionIsAdded, setRegionIsAdded] = useState(false);
     const { currLocation, weather, userData, setUsersRegions, usersRegions } = props;
     const current =(weather) ? weather.current : null;
+    const [user] = useAuthState(auth);
 
     useEffect(()=>{
         const isAdded = (currLocation) ? checkIfRegionAdded(currLocation, usersRegions) : false;
@@ -53,7 +56,7 @@ const WidgetBody = (props: WidgetBodyProps) => {
                     </div>
                     <div className="WidgetBody--right">
                         {
-                            (regionIsAdded) ? null :
+                            (regionIsAdded || !user) ? null :
                              <button
                                 onClick = { ()=>{
                                      addRegion(currLocation, usersRegions, setUsersRegions);
